@@ -1,0 +1,14 @@
+{
+  "name": "3CX Click-to-Dial",
+  "description": "Launch calls in 3CX Desktop / Web-client from HubSpot.",
+  "version": "1.0.0",
+  "icon": "https://mw-expat.github.io/3cx-call-button/3cx.png",
+  "capabilities": {
+    "calling": {
+      "actions": ["CLICK_TO_CALL"]
+    }
+  },
+  "settings": {
+    "supportedCountries": ["DE", "PT", "US", "GB"]
+  }
+}

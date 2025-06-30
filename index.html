@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>3CX Click-to-Dial</title>
+    <script src="https://unpkg.com/@hubspot/calling-extensions-sdk@latest"></script>
+</head>
+<body>
+<script>
+    // 1 – boot the SDK
+    hsCallingExtensions.initialize();
+
+    // 2 – register the one action you care about
+    hsCallingExtensions.register({
+        onDialNumber: ({ phoneNumber }) => {
+            // sanitize is optional – your 3CX trunk already converts 00 → +
+            const clean = phoneNumber.replace(/\s+/g, '');
+
+            // OPTION A  — hand off to OS / 3CX Desktop App
+            window.open(`tel:${encodeURIComponent(clean)}`);
+
+            /* OPTION B — open the 3CX Web-client directly
+             window.open(
+               `https://pbx.example.com/webclient/#/call?phone=${encodeURIComponent(clean)}`,
+               '_blank'
+             );
+            */
+
+            // 3 – tell HubSpot the click succeeded so it shows the spinner
+            return { completed: true };
+        }
+    });
+</script>
+</body>
+</html>
